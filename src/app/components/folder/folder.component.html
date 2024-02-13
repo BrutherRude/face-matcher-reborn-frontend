@@ -1,0 +1,12 @@
+<li class="folder-item" (click)="redirectToFolderContent(folder.id)">
+    <div class="folder-icon">Í</div>
+    
+    <div class="folder-content">
+        <p class="folder-name">{{ folder.name }}</p>
+
+        <div class="folder-details">
+            <p class="details-label">Detalhes da Pasta</p>
+            <p class="created-date">{{ folder.createdAt | date:'medium' }}</p>
+        </div>
+    </div>
+</li>

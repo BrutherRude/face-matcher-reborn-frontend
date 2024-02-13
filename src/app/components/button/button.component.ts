@@ -1,18 +1,27 @@
 import { Component, Input } from '@angular/core';
+import { AuthService } from 'src/app/pages/auth/services/auth.service';
 
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
-  styleUrls: ['./button.component.css']
+  styleUrls: ['./button.component.css'],
+  providers: [
+    AuthService
+  ]
 })
 export class ButtonComponent {
 
+  constructor() {}
+
   @Input() label: string = "";
-  @Input() callback: Function = (args?:any) => {};
+  @Input() callback: (() => void) | undefined;
   @Input() type : string = "submit"
 
   execute() {
-    this.callback();
+    if(this.callback) {
+      this.callback();
+    }
+
   }
 
 }

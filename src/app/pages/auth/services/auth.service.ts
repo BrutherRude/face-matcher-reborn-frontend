@@ -10,28 +10,34 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
+  private tokenKey = 'authToken';
 
+  constructor(private http: HttpClient, private apiService: ApiService, private router: Router) {
+    this.token = localStorage.getItem(this.tokenKey);
+  }
 
-  constructor(private http: HttpClient, private apiService: ApiService, private router: Router) {}
+  private _token: string | null = null;
 
-  private token: string | null = null;
+  get token(): string | null {
+    return this._token;
+  }
+
+  set token(value: string | null) {
+    this._token = value;
+    if (value) {
+      localStorage.setItem(this.tokenKey, value);
+    } else {
+      localStorage.removeItem(this.tokenKey);
+    }
+  }
 
   login(user: IAuthRequest): Observable<IAuthResponse> {
     const options = { headers: new HttpHeaders({ 'skipAuthCheck': 'true' }) };
     return this.http.post<IAuthResponse>(`${this.apiService.apiUrl}/user/login`, user, options);
   }
 
-  setToken(token: string | null): void {
-    this.token = token;
-  }
-
-  getToken(): string | null {
-    return this.token;
-  }
-
   logout() {
-    this.setToken(null);
+    this.token = null;
     this.router.navigate(['/', 'auth']);
-
   }
 }

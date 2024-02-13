@@ -12,6 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthComponent } from './pages/auth/auth.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './pages/auth/interceptors/auth.interceptor';
+import { ModalComponent } from './components/modal/modal.component';
+import { FolderComponent } from './components/folder/folder.component';
+import { ContentComponent } from './components/content/content.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { AuthInterceptor } from './pages/auth/interceptors/auth.interceptor';
 
     // generic components
     InputFieldComponent,
-    ButtonComponent
+    ButtonComponent,
+    ModalComponent,
+    FolderComponent,
+    ContentComponent
     
   ],
   imports: [
@@ -43,6 +49,7 @@ import { AuthInterceptor } from './pages/auth/interceptors/auth.interceptor';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
+      
     },
   ],
   bootstrap: [AppComponent]

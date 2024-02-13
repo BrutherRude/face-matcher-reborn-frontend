@@ -21,9 +21,10 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(request);
     }
     
-    const token = this.authService.getToken();
+    const token = this.authService.token;
 
     if (!token || !this.isTokenValid(token)) {
+      window.alert("session expired")
       this.authService.logout();
     }
 
@@ -38,20 +39,26 @@ export class AuthInterceptor implements HttpInterceptor {
 
   private isTokenValid(token: string): boolean {
 
-    if (!token) {
-      return false;
-    }
+    // if (!token) {
+    //   return false;
+    // }
 
-    const tokenParts = token.split('.');
+    // const tokenParts = token.split('.');
 
-    if (tokenParts.length !== 3) {
-      return false;
-    }
-    const payload = JSON.parse(atob(tokenParts[1]));
-    if (!payload || !payload.exp) {
-      return false;
-    }
-    const expirationTime = payload.exp * 1000;
-    return expirationTime > Date.now();
+    // if (tokenParts.length !== 3) {
+    //   return false;
+    // }
+    
+    // const payload = JSON.parse(atob(tokenParts[1]));
+    
+    // if (!payload || !payload.exp) {
+    //   return false;
+    // }
+
+    // const expirationTimeUTC = new Date(payload.exp * 1000);
+    // expirationTimeUTC.setHours(expirationTimeUTC.getHours() - 3); 
+
+    // return expirationTimeUTC.getTime() > Date.now();
+    return true;
   }
 }

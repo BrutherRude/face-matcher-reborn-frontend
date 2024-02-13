@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IAuthRequest } from './interfaces/request/auth-request.interface';
@@ -11,7 +11,7 @@ import { AuthService } from './services/auth.service';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css'],
 })
-export class AuthComponent {
+export class AuthComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -25,10 +25,15 @@ export class AuthComponent {
 
   form: FormGroup;
 
+  ngOnInit() {
+    if (this.authService.token) {
+      this.router.navigate(['']);
+    }
+  }
 
   onSubmit(): void {
     if (!this.form.valid) {
-      window.alert('invalid form');
+      window.alert('Invalid form');
       this.form.reset();
       return;
     }
@@ -40,15 +45,12 @@ export class AuthComponent {
   login(userForm: IAuthRequest): Subscription {
     return this.authService.login(userForm).subscribe(
       (response: IAuthResponse) => {
-        this.authService.setToken(response.token);
-        this.router.navigate([""]);
-
+        this.authService.token = response.token;
+        this.router.navigate(['']);
       },
       (error) => {
         window.alert(error.message);
       }
     );
   }
-
- 
 }

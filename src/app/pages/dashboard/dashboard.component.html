@@ -1,1 +1,42 @@
-<p>dashboard works!</p>
+<div class="app-buttons">
+  <app-button
+    type="button"
+    label="Logout"
+    [callback]="this.authService.logout.bind(authService)"
+  ></app-button>
+  <app-button
+    type="button"
+    label="New Folder"
+    [callback]="this.openCreateFolderModal.bind(this)"
+  ></app-button>
+</div>
+
+<ul class="app-folder-list">
+    <app-folder *ngFor="let folder of this.folders; index as i;" [folder]="folder" ></app-folder>
+</ul>
+
+<app-modal id="modal-create-folder" class="modal">
+  <div class="modal-header">
+    <h5 class="modal-title">New Folder</h5>
+  </div>
+
+  <div class="modal-body">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <app-input-field
+        label="Folder Name"
+        type="text"
+        formControlName="folderName"
+      ></app-input-field>
+
+      <div class="modal-form-footer">
+        <app-button type="submit" label="Create"></app-button>
+        <app-button
+          type="button"
+          label="Cancel"
+          [callback]="this.closeCreateFolderModal.bind(this)"
+        ></app-button>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer"></div>
+</app-modal>

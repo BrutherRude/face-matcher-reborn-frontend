@@ -1,0 +1,43 @@
+.folder-item {
+    list-style: none;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    display: flex;
+    cursor: pointer;
+    align-items: center; 
+}
+
+.folder-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #ccc;
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px; 
+    margin-right: 10px; 
+}
+
+.folder-content {
+    flex-grow: 1; 
+}
+
+.folder-name {
+    font-weight: bold;
+    margin: 0; 
+}
+
+.folder-details {
+    display: none;
+    margin-top: 5px; 
+}
+
+.folder-item:hover .folder-details {
+    display: block;
+}
+
+.created-date {
+    font-style: italic;
+    color: #555;
+    margin: 0; 
+}
