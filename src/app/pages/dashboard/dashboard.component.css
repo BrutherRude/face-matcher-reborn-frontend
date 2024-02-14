@@ -1,46 +1,51 @@
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-  }
-  
-  .app-buttons {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-  }
-  
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.app-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.app-folder-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin: 0 auto;
+  max-width: 80%;
+}
+
+.app-folder-item {
+  width: 100%;
+}
+
+.app-folder {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.app-folder:hover {
+  transform: scale(1.05);
+}
+
+.modal {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.modal-form-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+@media screen and (max-width: 600px) {
   .app-folder-list {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
-    margin: 0 auto;
-    max-width: 80%;
+    grid-template-columns: 1fr;
   }
-  
-  .app-folder-item {
-    width: 100%;
-  }
-  
-  .app-folder {
-    border: 1px solid #ccc;
-    padding: 10px;
-  }
-  
-  .modal {
-    max-width: 600px; 
-    margin: 0 auto;
-  }
-  
-  .modal-form-footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-  }
-  
-  @media screen and (max-width: 600px) {
-    .app-folder-list {
-      grid-template-columns: 1fr;
-    }
-  }
-  
+}

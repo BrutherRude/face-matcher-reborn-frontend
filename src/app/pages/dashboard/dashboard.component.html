@@ -12,10 +12,13 @@
 </div>
 
 <ul class="app-folder-list">
-    <app-folder *ngFor="let folder of this.folders; index as i;" [folder]="folder" ></app-folder>
+  <app-folder
+    *ngFor="let folder of this.folders; index as i"
+    [folder]="folder"
+  ></app-folder>
 </ul>
 
-<app-modal id="modal-create-folder" class="modal">
+<app-modal id="{{ this.MODAL_CREATE_FOLDER_ID }}" class="modal">
   <div class="modal-header">
     <h5 class="modal-title">New Folder</h5>
   </div>

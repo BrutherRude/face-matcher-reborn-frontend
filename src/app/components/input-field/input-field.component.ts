@@ -14,10 +14,13 @@ const INPUT_FIELD_VALUE_ACCESSOR: any = {
   providers: [INPUT_FIELD_VALUE_ACCESSOR],
 })
 export class InputFieldComponent implements ControlValueAccessor {
-  
-  @Input() label: string = "";
-  @Input() type: string = "text";
-  @Input() placeholder: string = "";
+  @Input() label: string;
+  @Input() type: string = 'text';
+  @Input() placeholder: string = '';
+  @Input() multiple: boolean = false;
+  @Input() hideInput: boolean = false;
+  @Input() id: string = 'input-field' + Math.floor(Math.random() * 1000);
+  @Input() accept: string = '';
 
   value: string = '';
 

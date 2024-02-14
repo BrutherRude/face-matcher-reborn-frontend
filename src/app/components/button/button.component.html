@@ -1,3 +1,3 @@
 <div class="button-container">
-    <button type="{{type}}" (click)="execute()"> {{label}} </button>
+    <button type="{{type}}" (click)="execute()" [attr.disabled]="isDisabled ? true : null"> {{label}} </button>
 </div>

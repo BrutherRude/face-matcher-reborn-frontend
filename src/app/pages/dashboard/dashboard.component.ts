@@ -24,6 +24,8 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  MODAL_CREATE_FOLDER_ID: string = 'modal-create-folder';
+
   form: FormGroup;
 
   folders: Folder[] = [];
@@ -32,20 +34,20 @@ export class DashboardComponent implements OnInit {
     this.getFolders();
   }
 
-  openCreateFolderModal(): void {
-    this.modalService.open('modal-create-folder');
-  }
-
-  closeCreateFolderModal(): void {
-    this.modalService.close();
-  }
-
   onSubmit(): void {
     if (!this.form.valid) {
       window.alert('invalid form');
       return;
     }
     this.createFolder(this.form.value as IFolderRequest);
+  }
+
+  openCreateFolderModal(): void {
+    this.modalService.open(this.MODAL_CREATE_FOLDER_ID);
+  }
+
+  closeCreateFolderModal(): void {
+    this.modalService.close();
   }
 
   createFolder(folder: IFolderRequest): void {
@@ -79,7 +81,9 @@ export class DashboardComponent implements OnInit {
           );
         });
 
-      this.folders.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+        this.folders.sort(
+          (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
+        );
       },
       (error) => {
         window.alert(error.error.detail);

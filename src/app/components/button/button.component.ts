@@ -16,6 +16,7 @@ export class ButtonComponent {
   @Input() label: string = "";
   @Input() callback: (() => void) | undefined;
   @Input() type : string = "submit"
+  @Input() isDisabled: boolean = false;
 
   execute() {
     if(this.callback) {

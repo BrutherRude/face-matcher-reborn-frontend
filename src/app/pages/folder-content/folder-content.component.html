@@ -1,6 +1,106 @@
-<ul>
-    <ul class="">
-        <app-content *ngFor="let content of this.contents; index as i;" [content]="content" ></app-content>
-    </ul>
+<app-button
+  type="button"
+  label="Upload files"
+  [callback]="this.openModal.bind(this, MODAL_UPLOAD_FILES_ID)"
+></app-button>
 
+<app-button
+  type="button"
+  label="Find Matches"
+  [callback]="this.openModal.bind(this, MODAL_FIND_MATCHES_ID)"
+></app-button>
+
+<app-modal id="{{ this.MODAL_UPLOAD_FILES_ID }}" class="modal">
+  <div class="modal-header">
+    <h5 class="modal-title">Upload Files</h5>
+  </div>
+
+  <div class="modal-body">
+    <app-input-field
+      type="file"
+      id="{{ this.UPLOAD_FILES_INPUT_ID }}"
+      [multiple]="true"
+      (change)="onFileSelected($event)"
+      [hideInput]="false"
+      [accept]="'.png, .jpg, .jpeg'"
+    ></app-input-field>
+  </div>
+  <div class="modal-footer">
+    <app-button
+      type="button"
+      label="Send"
+      [callback]="this.uploadFiles.bind(this)"
+      [isDisabled]="this.files.length === 0"
+    ></app-button>
+
+    <app-button
+      type="button"
+      label="Cancel"
+      [callback]="this.closeModal.bind(this)"
+    ></app-button>
+  </div>
+</app-modal>
+
+<app-modal id="{{ this.MODAL_FIND_MATCHES_ID }}" class="modal">
+  <div class="modal-header">
+    <h5 class="modal-title">Find Matches</h5>
+  </div>
+
+  <div class="modal-body">
+    <app-input-field
+      type="file"
+      id="{{ this.FIND_MATCHES_INPUT_ID }}"
+      [multiple]="false"
+      (change)="onFileSelected($event)"
+      [hideInput]="false"
+      [accept]="'.png, .jpg, .jpeg'"
+    ></app-input-field>
+  </div>
+  <div class="modal-footer">
+    <app-button
+      type="button"
+      label="Find"
+      [callback]="this.findMatches.bind(this)"
+      [isDisabled]="this.files.length === 0"
+    ></app-button>
+
+    <app-button
+      type="button"
+      label="Cancel"
+      [callback]="this.closeModal.bind(this)"
+    ></app-button>
+  </div>
+</app-modal>
+
+<app-modal id="{{ this.MODAL_MATCHES_RESULTS_ID }}" class="modal">
+  <div class="modal-header">
+    <h5 class="modal-title">Results</h5>
+  </div>
+
+  <div class="modal-body">
+    <ul>
+      <ul class="">
+        <app-content
+          *ngFor="let match of this.matches; index as i"
+          [content]="match"
+        ></app-content>
+      </ul>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <app-button
+      type="button"
+      label="Close"
+      [callback]="this.closeModal.bind(this)"
+    ></app-button>
+  </div>
+</app-modal>
+
+<ul>
+  <ul class="">
+    <app-content
+      *ngFor="let content of this.contents; index as i"
+      [content]="content"
+    ></app-content>
+  </ul>
 </ul>

@@ -19,7 +19,7 @@ const routes: Routes = [
     component: AuthComponent,
   },
   {
-    path: 'folder-content/:id',
+    path: 'folder-content',
     component: FolderContentComponent,
   },
 ];

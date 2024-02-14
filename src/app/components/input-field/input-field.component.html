@@ -1,10 +1,14 @@
 <div class="input-field-container">
-  <label for="input-field">{{ label }}</label>
+  <label for="{{this.id}}">{{ label }}</label>
   <input
-    id="input-field"
+    id="{{this.id}}"
     type="{{ type }}"
     [value]="value"
     (input)="onInputChange($event)"
     [placeholder]="placeholder"
+    [multiple]="multiple"
+    hideInput="false"
+    [attr.accept]="accept"
+    [ngStyle]="{ 'display': this.hideInput ? 'none' : 'block' }"
   />
 </div>
